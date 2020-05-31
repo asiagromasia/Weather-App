@@ -21,6 +21,10 @@ interface OpenWeatherMapService {
         @Query("zip") zipcode: String,
         @Query("units") units: String,
         @Query("appid") apiKey: String
+    //i added
+//        @Query("lat") lat : Float,
+//        @Query("lon") lon: Float,
+//        @Query("exclude") exclude: String
     ): Call<CurrentWeather>
 
     @GET("/data/2.5/onecall")

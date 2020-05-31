@@ -25,6 +25,10 @@ class DailyForecastViewHolder(
     private val descriptionText: TextView = view.findViewById(R.id.descriptionText)
     private val dateText = view.findViewById<TextView>(R.id.dateText)
     private val forecastIcon = view.findViewById<ImageView>(R.id.forecastIcon)
+    ///////
+   // private val dateTextFD = view.findViewById<TextView>(R.id.dateTextFD)
+  //  private val forecastIconFD = view.findViewById<ImageView>(R.id.imageViewFD)
+
 
     fun bind(dailyForecast: DailyForecast){
        // tempText.text = dailyForecast.temp.toString()

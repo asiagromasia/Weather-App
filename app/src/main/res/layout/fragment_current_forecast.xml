@@ -20,14 +20,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageViewFD"
+        android:layout_width="89dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/ic_wb_cloudy_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descriptionTextFD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintStart_toStartOf="@+id/imageViewFD"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFD"
+        tools:text="Partly cloudy" />
+
     <TextView
         android:id="@+id/locationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tempText"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Seattle" />
 
@@ -35,8 +53,12 @@
         android:id="@+id/tempText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/locationName"
+        android:layout_marginStart="32dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionText"
+        app:layout_constraintStart_toEndOf="@+id/imageViewFD"
         app:layout_constraintTop_toBottomOf="@+id/locationName"
+        app:layout_constraintVertical_bias="0.523"
         tools:text="72.0°" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

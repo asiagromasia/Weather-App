@@ -34,7 +34,7 @@ class ForecastRepository {
                     val forecastCall = createOpenWeatherMapService().sevenDayForecast(
                         lat = weatherResponse.coord.lat,
                         lon = weatherResponse.coord.lon,
-                        exclude = "current, minute;y, hourly",
+                        exclude = "current, minutely, hourly",
                         units = "imperial",
                         apiKey = BuildConfig.OPEN_WEATHER_MAP_API_KEY
                     )
@@ -60,41 +60,49 @@ class ForecastRepository {
     }
 
     fun loadCurrentForecast(zipcode: String) {
-        val call = createOpenWeatherMapService().currentWeather(
-            zipcode,
-            "imperial",
-            BuildConfig.OPEN_WEATHER_MAP_API_KEY
-        )
+        val call = createOpenWeatherMapService().currentWeather( zipcode, "imperial", BuildConfig.OPEN_WEATHER_MAP_API_KEY )
         call.enqueue(object : Callback<CurrentWeather> {
             override fun onFailure(call: Call<CurrentWeather>, t: Throwable) {
                 Log.e(ForecastRepository::class.java.simpleName, "error loading current weather", t)
             }
 
-            override fun onResponse(
-                call: Call<CurrentWeather>,
-                response: Response<CurrentWeather>
-            ) {
-                val weatherResponse = response.body()
-                if (weatherResponse != null) {
-                    _currentWeather.value = weatherResponse
+            override fun onResponse(call: Call<CurrentWeather>, response: Response<CurrentWeather>) {
+                val currentWeather = response.body()
+                if (currentWeather != null) {
+                    //
+                    val forecastCall = createOpenWeatherMapService().currentWeather(
+                        zipcode = "String",
+                        units = "imperial",
+                        apiKey = BuildConfig.OPEN_WEATHER_MAP_API_KEY
+                    )
+                    forecastCall.enqueue(object: Callback<CurrentWeather> {
+                        override fun onFailure(call: Call<CurrentWeather>, t: Throwable) {
+                            Log.e(ForecastRepository::class.java.simpleName, "error loading current weather!!!", t)
+                        }
+                        override fun onResponse(call: Call<CurrentWeather>, response: Response<CurrentWeather>) {
+                            val currentWeather = response.body()
+                            if (currentWeather != null) {
+                                _currentWeather.value = currentWeather
+                            }
+                        }
+                    })
                 }
             }
+      })
+  }
 
-        })
-    }
-
-    private fun getTempDescription(temp: Float) : String {
-        //return if(temp <75)"It's too cold" else "It's great!"  or
-        return when (temp){
-            in Float.MIN_VALUE.rangeTo(0f) -> "Anything below 0 doesn't make sense"
-            in 0f.rangeTo(32f) -> "Way too cold"
-            in 32f.rangeTo(55f) -> "Colder that you may think"
-            in 55f.rangeTo(66f) -> "its ok"
-            in 66f.rangeTo(77f) -> "Sweet"
-            in 77f.rangeTo(100f) -> "Way too hot!"
-            in 100f.rangeTo(Float.MAX_VALUE) -> "What it is Arizona?!!?"
-            else -> "Doesn't compute"
-        }
-    }
+  private fun getTempDescription(temp: Float) : String {
+      //return if(temp <75)"It's too cold" else "It's great!"  or
+      return when (temp){
+          in Float.MIN_VALUE.rangeTo(0f) -> "Anything below 0 doesn't make sense"
+          in 0f.rangeTo(32f) -> "Way too cold"
+          in 32f.rangeTo(55f) -> "Colder that you may think"
+          in 55f.rangeTo(66f) -> "its ok"
+          in 66f.rangeTo(77f) -> "Sweet"
+          in 77f.rangeTo(100f) -> "Way too hot!"
+          in 100f.rangeTo(Float.MAX_VALUE) -> "What it is Arizona?!!?"
+          else -> "Doesn't compute"
+      }
+  }
 
 }
