@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".forecast.CurrentForecastFragment">
 
 
@@ -21,44 +20,46 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageViewFD"
+        android:id="@+id/imageViewCF"
         android:layout_width="89dp"
         android:layout_height="89dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/ic_wb_cloudy_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/descriptionTextFD"
+        android:id="@+id/descriptionTextCF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintStart_toStartOf="@+id/imageViewFD"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFD"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCF"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCF"
         tools:text="Partly cloudy" />
 
     <TextView
         android:id="@+id/locationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="64dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="@+id/tempText"
+        app:layout_constraintStart_toStartOf="@+id/tempTextCF"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Seattle" />
 
     <TextView
-        android:id="@+id/tempText"
+        android:id="@+id/tempTextCF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toTopOf="@+id/descriptionText"
-        app:layout_constraintStart_toEndOf="@+id/imageViewFD"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCF"
         app:layout_constraintTop_toBottomOf="@+id/locationName"
-        app:layout_constraintVertical_bias="0.523"
         tools:text="72.0°" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

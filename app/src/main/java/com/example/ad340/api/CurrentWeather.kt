@@ -3,7 +3,7 @@ package com.example.ad340.api
 import com.squareup.moshi.Json
 //added description and icon date
  //data class Forecast(val temp: Float, val description: String, val icon: String,val date: Long) {
-    data class Forecast(val temp: Float,val date: Long,val icon: String) {
+    data class Forecast(val temp: Float,val date: Long,val icon: String,val description: String) {
 
 
     }

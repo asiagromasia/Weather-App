@@ -69,23 +69,24 @@ class ForecastRepository {
             override fun onResponse(call: Call<CurrentWeather>, response: Response<CurrentWeather>) {
                 val currentWeather = response.body()
                 if (currentWeather != null) {
-                    //
-                    val forecastCall = createOpenWeatherMapService().currentWeather(
-                        zipcode = "String",
-                        units = "imperial",
-                        apiKey = BuildConfig.OPEN_WEATHER_MAP_API_KEY
-                    )
-                    forecastCall.enqueue(object: Callback<CurrentWeather> {
-                        override fun onFailure(call: Call<CurrentWeather>, t: Throwable) {
-                            Log.e(ForecastRepository::class.java.simpleName, "error loading current weather!!!", t)
-                        }
-                        override fun onResponse(call: Call<CurrentWeather>, response: Response<CurrentWeather>) {
-                            val currentWeather = response.body()
-                            if (currentWeather != null) {
-                                _currentWeather.value = currentWeather
-                            }
-                        }
-                    })
+                    _currentWeather.value = currentWeather
+//
+//                    val forecastCall = createOpenWeatherMapService().currentWeather(
+//                        zipcode = "String",
+//                        units = "imperial",
+//                        apiKey = BuildConfig.OPEN_WEATHER_MAP_API_KEY
+//                    )
+//                    forecastCall.enqueue(object: Callback<CurrentWeather> {
+//                        override fun onFailure(call: Call<CurrentWeather>, t: Throwable) {
+//                            Log.e(ForecastRepository::class.java.simpleName, "error loading current weather!!!", t)
+//                        }
+//                        override fun onResponse(call: Call<CurrentWeather>, response: Response<CurrentWeather>) {
+//                            val currentWeather = response.body()
+//                            if (currentWeather != null) {
+//                                _currentWeather.value = currentWeather
+//                            }
+//                        }
+//                    })
                 }
             }
       })
