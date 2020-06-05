@@ -67,10 +67,14 @@ class ForecastRepository {
             }
 
             override fun onResponse(call: Call<CurrentWeather>, response: Response<CurrentWeather>) {
-                val currentWeather = response.body()
-                if (currentWeather != null) {
-                    _currentWeather.value = currentWeather
-//
+                val weatherResponse = response.body()
+                if (weatherResponse != null){
+                    _currentWeather.value = weatherResponse
+
+//                val currentWeather = response.body()
+//                if (currentWeather != null) {
+//                   _currentWeather.value = currentWeather
+
 //                    val forecastCall = createOpenWeatherMapService().currentWeather(
 //                        zipcode = "String",
 //                        units = "imperial",
