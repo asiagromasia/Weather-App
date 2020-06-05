@@ -18,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
-    private val forecastRepository = ForecastRepository()
+
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,10 +26,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         tempDisplaySettingManager = TempDisplaySettingManager(this)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        findViewById<Toolbar>(R.id.toolbar).setTitle(R.string.app_name)
+        toolbar.setTitle(R.string.app_name)
+        toolbar.inflateMenu(R.menu.settings_menu)
+        setSupportActionBar(toolbar)
         //findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
+
         findViewById<BottomNavigationView>(R.id.bottomNavigationView).setupWithNavController(navController)
 
     }
