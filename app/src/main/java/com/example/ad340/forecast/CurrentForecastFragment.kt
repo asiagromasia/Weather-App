@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -47,6 +48,8 @@ class CurrentForecastFragment : Fragment() {
         //  val date = view.findViewById<TextView>(R.id.dateText)   its today so no need for it
         val forecastIcon = view.findViewById<ImageView>(R.id.imageView)
         // val icon = view.findViewById<ImageView>(R.id.imageViewCF)
+        val emptyText = view.findViewById<TextView>(R.id.emptyText)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
 
         tempDisplaySettingManager = TempDisplaySettingManager(requireContext())
@@ -56,6 +59,17 @@ class CurrentForecastFragment : Fragment() {
         //Create the observer which updates the UI in response to forecast updates
         val currentWeatherObserver = Observer<CurrentWeather> { weather ->
             //   val currentWeatherObserver = Observer<CurrentWeather> { currentWeather ->
+
+            //adding visibility attribute
+            emptyText.visibility = View.GONE
+            progressBar.visibility = View.GONE
+            locationName.visibility = View.VISIBLE
+            tempText.visibility = View.VISIBLE
+            descriptionText.visibility = View.VISIBLE
+            forecastIcon.visibility = View.VISIBLE
+
+
+
                locationName.text = weather.name
             //  locationName.text = args.locationName
                tempText.text = formatTempForDisplay(weather.forecast.temp, tempDisplaySettingManager.getTempDisplaySetting())
@@ -76,11 +90,14 @@ class CurrentForecastFragment : Fragment() {
         locationEntryButton.setOnClickListener {
             showLocationEntry()
         }
-
         locationRepository = LocationRepository(requireContext())
+
         val savedLocationObserver = Observer<Location> {savedLocation ->
             when(savedLocation){
-                is Location.Zipcode -> forecastRepository.loadCurrentForecast(savedLocation.zipcode)
+                is Location.Zipcode -> {
+                    progressBar.visibility = View.VISIBLE
+                    forecastRepository.loadCurrentForecast(savedLocation.zipcode)
+                }
             }
         }
         locationRepository.savedLocation.observe(viewLifecycleOwner, savedLocationObserver)
