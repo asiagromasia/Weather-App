@@ -5,4 +5,4 @@
 - option to change between Fahrenheit and Celsius
 - option to view in horizontal way
 
-![Demo]()
+![Demo](https://user-images.githubusercontent.com/35482401/103386166-73101500-4ab2-11eb-8395-f45d3c9f4879.mp4)
