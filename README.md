@@ -5,7 +5,4 @@
 - option to change between Fahrenheit and Celsius
 - option to view in horizontal way
 
-https://user-images.githubusercontent.com/35482401/103387535-31369d00-4ab9-11eb-857f-6f111c878cdc.png
-
-![Demo](https://user-images.githubusercontent.com/35482401/103386166-73101500-4ab2-11eb-8395-f45d3c9f4879.mp4)
-
+[(<img src="https://user-images.githubusercontent.com/35482401/103387535-31369d00-4ab9-11eb-857f-6f111c878cdc.png" alt="demo" width="400" />)](https://user-images.githubusercontent.com/35482401/103386166-73101500-4ab2-11eb-8395-f45d3c9f4879.mp4)
