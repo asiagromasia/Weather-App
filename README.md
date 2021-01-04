@@ -1,9 +1,11 @@
-# Weather App for Android
-- connected to outside weather API for actual weather temp, images and description
+# Weather App for Android 
+- loading remote data from OpenWeatherMap API for actual weather temp, forecast, images and description
 - option to place your zipcode
 - option to choose between daily and weekly weather
 - option to change between Fahrenheit and Celsius
 - option to view in horizontal way
+
+elements used: AppNavigator, Fragments (CurrrentForecastFragment, LocationEntryFragment), FloatingActionButton, RecyclerView 
 
 # DEMO:
 
